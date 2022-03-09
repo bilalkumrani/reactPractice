@@ -1,11 +1,11 @@
 import "./App.css";
-import { Button } from "react-bootstrap";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import { BrowserRouter} from "react-router-dom";
 import MyNavbar from "./components/MyNavbar";
 import { useState } from "react";
 import Operations from "./components/Operations";
+import MyTable from "./components/MyTable";
 
 function App() {
 
@@ -30,6 +30,7 @@ return (
     <BrowserRouter>
     <Routes>
     <Route exact path="home" element={<Home/>} />
+    <Route exact path="table" element={<MyTable/>} />
     <Route exact path="operations"  element={<Operations increment={increment} decrement={decrement}/>}/>
     </Routes>
     </BrowserRouter>
