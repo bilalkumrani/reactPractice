@@ -2,8 +2,15 @@ import "./App.css";
 import { Link, NavLink } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { useFormik } from "formik";
+import * as yup from "yup";
 
 function App() {
+  const validationSchema = yup.object({
+    name: yup.string().required("Required"),
+    email: yup.string().email("Invalid email address").required("Required"),
+    channel: yup.string().required("Required"),
+  });
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -13,17 +20,18 @@ function App() {
     onSubmit: (values) => {
       console.log(values);
     },
-    validate: (values) => {
-      let errors = {};
-      if (!values.name) errors.name = "required";
-      if (!values.email) errors.email = "required";
-      else if (values.email !== "/^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/") {
-        errors.email = "invalid email address";
-      }
-      if (!values.channel) errors.channel = "required";
+    // validate: (values) => {
+    //   let errors = {};
+    //   if (!values.name) errors.name = "required";
+    //   if (!values.email) errors.email = "required";
+    //   else if (values.email !== "/^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/") {
+    //     errors.email = "invalid email address";
+    //   }
+    //   if (!values.channel) errors.channel = "required";
 
-      return errors;
-    },
+    //   return errors;
+    // },
+    validationSchema,
   });
 
   return (
