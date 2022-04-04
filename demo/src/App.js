@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useReducer, useEffect } from "react";
+import { useState, useReducer, useEffect, useRef } from "react";
 import axios from "axios";
 function App() {
   // USE STATE HOOK
@@ -43,21 +43,39 @@ function App() {
   // );
   // USEEFFCT HOOK
 
-  useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/comments")
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log("error body");
-      });
+  // useEffect(() => {
+  //   axios
+  //     .get("https://jsonplaceholder.typicode.com/comments")
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log("error body");
+  //     });
 
-    return () => {
-      console.log("this is cleanup code (componentWillUnmount)");
-    };
-  }, []);
+  //   return () => {
+  //     console.log("this is cleanup code (componentWillUnmount)");
+  //   };
+  // }, []);
 
-  return <></>;
+  //USEREF HOOK
+  const inputRef = useRef(null);
+
+  return (
+    <>
+      <input placeholder="type.." ref={inputRef} />
+      <button
+        onClick={() => {
+          console.log(inputRef.current.value);
+          inputRef.current.focus();
+
+          //clearing text field
+          inputRef.current.value = "";
+        }}
+      >
+        Focus on text field
+      </button>
+    </>
+  );
 }
 export default App;
