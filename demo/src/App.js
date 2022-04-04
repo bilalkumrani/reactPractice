@@ -1,6 +1,9 @@
 import "./App.css";
-import { useState, useReducer, useEffect, useRef } from "react";
+import { useState, useReducer, useEffect, useRef, createContext } from "react";
 import axios from "axios";
+import Login from "./Login";
+import User from "./User";
+const AppContext = createContext(null);
 function App() {
   // USE STATE HOOK
   // const [data, setData] = useState({
@@ -42,7 +45,6 @@ function App() {
   //   </>
   // );
   // USEEFFCT HOOK
-
   // useEffect(() => {
   //   axios
   //     .get("https://jsonplaceholder.typicode.com/comments")
@@ -52,30 +54,35 @@ function App() {
   //     .catch((err) => {
   //       console.log("error body");
   //     });
-
   //   return () => {
   //     console.log("this is cleanup code (componentWillUnmount)");
   //   };
   // }, []);
-
   //USEREF HOOK
-  const inputRef = useRef(null);
-
-  return (
-    <>
-      <input placeholder="type.." ref={inputRef} />
-      <button
-        onClick={() => {
-          console.log(inputRef.current.value);
-          inputRef.current.focus();
-
-          //clearing text field
-          inputRef.current.value = "";
-        }}
-      >
-        Focus on text field
-      </button>
-    </>
-  );
+  // const inputRef = useRef(null);
+  // return (
+  //   <>
+  //     <input placeholder="type.." ref={inputRef} />
+  //     <button
+  //       onClick={() => {
+  //         console.log(inputRef.current.value);
+  //         inputRef.current.focus();
+  //         //clearing text field
+  //         inputRef.current.value = "";
+  //       }}
+  //     >
+  //       Focus on text field
+  //     </button>
+  //   </>
+  // );
+  //  USECONTEXT HOOK
+  // const [data, setData] = useState("");
+  // //AppContext is created in start of this document
+  // return (
+  //   <AppContext.Provider value={{ data, setData }}>
+  //     <Login /> <User />
+  //   </AppContext.Provider>
+  // );
 }
 export default App;
+export { AppContext };
