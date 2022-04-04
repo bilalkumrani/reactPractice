@@ -1,6 +1,6 @@
 import "./App.css";
-import { useState, useReducer } from "react";
-
+import { useState, useReducer, useEffect } from "react";
+import axios from "axios";
 function App() {
   // USE STATE HOOK
   // const [data, setData] = useState({
@@ -41,5 +41,23 @@ function App() {
   //     <h1>{JSON.stringify(state)}</h1>
   //   </>
   // );
+  // USEEFFCT HOOK
+
+  useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/comments")
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log("error body");
+      });
+
+    return () => {
+      console.log("this is cleanup code (componentWillUnmount)");
+    };
+  }, []);
+
+  return <></>;
 }
 export default App;
