@@ -4,11 +4,6 @@ import Clickcounter from "./component/ClickCounter";
 import HoverCount from "./component/HoverCount";
 
 function App() {
-  return (
-    <>
-      <Clickcounter />
-      <HoverCount />
-    </>
-  );
+  return <></>;
 }
 export default App;
