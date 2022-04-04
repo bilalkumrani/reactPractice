@@ -6,8 +6,10 @@ function App() {
       <h1>Book Keeper</h1>
 
       <nav style={{ borderBottom: "1px solid" }}>
-        <NavLink> Invoices </NavLink>
-        <NavLink> Expenses </NavLink>
+        <NavLink style={{ marginRight: "10px" }} to="/expenses">
+          Expenses
+        </NavLink>
+        <NavLink to="/invoices">Invoices</NavLink>
       </nav>
     </>
   );
