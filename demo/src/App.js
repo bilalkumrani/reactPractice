@@ -1,18 +1,15 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
-
-
-
+import { Link, NavLink } from "react-router-dom";
 function App() {
+  return (
+    <>
+      <h1>Book Keeper</h1>
 
-return (
-
-  <>
-
- 
-  </>
-  
-)
-  
+      <nav style={{ borderBottom: "1px solid" }}>
+        <NavLink> Invoices </NavLink>
+        <NavLink> Expenses </NavLink>
+      </nav>
+    </>
+  );
 }
 export default App;
