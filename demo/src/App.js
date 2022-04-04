@@ -1,9 +1,14 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
-import Clickcounter from "./component/ClickCounter";
-import HoverCount from "./component/HoverCount";
+import Clilckcounter from "./components/ClilckCounter";
+import Hovercounter from "./components/HoverCounter";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <Clilckcounter />
+      <Hovercounter />
+    </>
+  );
 }
 export default App;
