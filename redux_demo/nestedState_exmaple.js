@@ -1,6 +1,6 @@
 const redux = require("redux");
 const createStore = redux.createStore;
-const combineReducer = redux.combineReducers;
+const produce = require("immer").produce;
 
 //Actions
 const UPDATE_STREET = "UPDATE_STREET";
@@ -27,13 +27,17 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_STREET:
-      return {
-        ...state,
-        address: {
-          ...state.address,
-          street: action.payload,
-        },
-      };
+      //   return {
+      //     ...state,
+      //     address: {
+      //       ...state.address,
+      //       street: action.payload,
+      //     },
+      //   };
+      return produce(state, (draft) => {
+        // it helps us in updating nested state and it reduce complexity
+        draft.address.street = action.payload;
+      });
     default:
       return state;
   }
