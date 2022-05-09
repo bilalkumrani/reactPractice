@@ -116,6 +116,8 @@ store.dispatch(iceCreamRestocked(10));
 
 unsubscribe();
 
+// other example
+
 // const redux = require("redux");
 // const createStore = redux.createStore;
 // // Actions
