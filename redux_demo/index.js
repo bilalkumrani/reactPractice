@@ -1,5 +1,6 @@
 const redux = require("redux");
 const creteStore = redux.createStore;
+const combineReducers = redux.combineReducers;
 //Action
 const CAKE_ORDERED = "CAKE_ORDERED";
 const CAKE_RESTOCKED = "CAKE_RESTOCKED";
@@ -18,13 +19,38 @@ const orderCake = (quantity = 1) => {
   };
 };
 
+//Now shop wants to sell iceCreams as wll
+const ICECREAM_ORDERED = "ICECREAM_ORDERED";
+const ICECREAM_RESTOCKED = "ICECREAM_RESTOCKED";
+
+const iceCreamOrdered = (quatity = 1) => {
+  return {
+    type: ICECREAM_ORDERED,
+    payload: quatity,
+  };
+};
+
+const iceCreamRestocked = (quatity = 1) => {
+  return {
+    type: ICECREAM_RESTOCKED,
+    payload: quatity,
+  };
+};
 //Reducer (previous state, action) => newState
 
-const initialState = {
+// const initialState = {
+//   numOfCakes: 10,
+// };
+
+const cakeState = {
   numOfCakes: 10,
 };
 
-const reducer = (state = initialState, action) => {
+const iceCreamState = {
+  numOfIceCreams: 20,
+};
+
+const cakeReducer = (state = cakeState, action) => {
   switch (action.type) {
     case CAKE_ORDERED:
       return {
@@ -43,13 +69,36 @@ const reducer = (state = initialState, action) => {
   }
 };
 
+const iceCreamReducer = (state = iceCreamState, action) => {
+  switch (action.type) {
+    case ICECREAM_ORDERED:
+      return {
+        ...state,
+        numOfIceCreams: state.numOfIceCreams - action.payload,
+      };
+
+    case ICECREAM_RESTOCKED:
+      return {
+        ...state,
+        numOfIceCreams: state.numOfIceCreams + action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
 // Rdux store
 // holds application state, Allow access to state via getState(),
 // Allow state to be updated via dispatch(action)
 // register listeners via subscribe(listener)
 // handle unregistering of listeners via the function returned by subscribe(listener)
 
-const store = creteStore(reducer);
+const rootReducer = combineReducers({
+  cake: cakeReducer,
+  iceCream: iceCreamReducer,
+});
+
+const store = creteStore(rootReducer);
 console.log("this is state: ", store.getState());
 const unsubscribe = store.subscribe(() => {
   console.log(store.getState());
@@ -60,6 +109,10 @@ store.dispatch(orderCake(1));
 store.dispatch(orderCake(0));
 
 store.dispatch(cakeRestocked(10));
+
+store.dispatch(iceCreamOrdered());
+store.dispatch(iceCreamOrdered());
+store.dispatch(iceCreamRestocked(10));
 
 unsubscribe();
 
