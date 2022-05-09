@@ -50,7 +50,8 @@ const unsubscribe = store.subscribe(() => {
   console.log("store is subscribed");
 });
 
-store.dispatch(updateStreet("sukkur Iba"));
+console.log(store.getState());
+store.dispatch(updateStreet("sindh society"));
 console.log(store.getState());
 
 unsubscribe();
