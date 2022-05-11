@@ -1,6 +1,10 @@
-import "./App.css";
+import Cakeview from "./features/cake/CakeView";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <Cakeview />
+    </>
+  );
 }
 export default App;
